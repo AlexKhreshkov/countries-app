@@ -4,8 +4,9 @@ import { CustomSelect } from './CustomSelect'
 import Search from './Search'
 
 const options = [
+    { value: 'all', label: 'ALL' },
     { value: 'Africa', label: 'Africa' },
-    { value: 'America', label: 'America' },
+    { value: 'Americas', label: 'America' },
     { value: 'Asia', label: 'Asia' },
     { value: 'Europe', label: 'Europe' },
     { value: 'Oceania', label: 'Oceania' },
@@ -23,10 +24,8 @@ const Wrapper = styled.div`
     }
 `
 
-export default function Controls() {
+export default function Controls({ search, region, setSearch, setRegion }) {
 
-    const [search, setSearch] = useState('')
-    const [region, setRegion] = useState('')
 
     return (
         <Wrapper>

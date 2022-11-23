@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
@@ -35,7 +36,7 @@ export default function CountryCard({ img, name, info = [], onClick }) {
             <CardImage src={img} alt={name} />
             <CardBody>
                 <CardTitle>
-                    {name}
+                    <Link to={`countries/${name}`}>{name}</Link>
                 </CardTitle>
                 <CardList>
                     {info.map(el => (

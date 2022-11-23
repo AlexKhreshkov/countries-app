@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Container } from './Container'
 import { IoMoon, IoMoonOutline } from 'react-icons/io5'
+import { Link } from 'react-router-dom'
 
 
 const HeaderEl = styled.header`
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
     padding: 1rem 0;
 `
 
-const Title = styled.a`
+const Title = styled.div`
     color: var(--color-text);
     font-size: var(--fs-sm);
     text-decoration: none;
@@ -43,7 +44,9 @@ export default function Header() {
         <HeaderEl>
             <Container>
                 <Wrapper>
-                    <Title>Where is the world?</Title>
+                    <Title>
+                        <Link to='/'>Where is the world?</Link>
+                    </Title>
                     <ModeSwitcher onClick={changeTheme}>
                         {
                             theme === 'ligth'

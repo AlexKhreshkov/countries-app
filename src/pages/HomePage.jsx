@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Controls from "../components/Controls";
 import CountriesList from "../components/CountriesList";
 import CountryCard from "../components/CountryCard";
@@ -12,6 +12,22 @@ export default function HomePage() {
 
     const [countries, setCountries] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [search, setSearch] = useState('')
+    const [region, setRegion] = useState('')
+
+    const searchedItems = useMemo(() => {
+        return countries.filter(country => country.name.toLowerCase().includes(search.toLowerCase()))
+    }, [search, countries])
+
+    const filteredByRegion = useMemo(() => {
+        if (region.value === 'all') {
+            return searchedItems
+        }
+        if (region) {
+            return searchedItems.filter(country => country.region === region.value)
+        }
+        return searchedItems
+    }, [region, searchedItems])
 
     useEffect(() => {
         axios.get(ALL_COUNTRIES)
@@ -28,9 +44,14 @@ export default function HomePage() {
                 :
                 <>
                     <Main>
-                        <Controls />
+                        <Controls
+                            search={search}
+                            region={region}
+                            setSearch={setSearch}
+                            setRegion={setRegion}
+                        />
                         <CountriesList>
-                            {countries.map((country, index) => {
+                            {filteredByRegion.map((country, index) => {
                                 const countryInfo = {
                                     img: country.flags.png,
                                     name: country.name,

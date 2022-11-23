@@ -63,6 +63,7 @@ button::-moz-focus-inner {
 a,
 a:visited {
   text-decoration: none;
+  color: inherit; 
 }
 
 a:hover {
@@ -86,7 +87,6 @@ h6 {
   font-size: inherit;
   font-weight: inherit;
 }
-
 /*--------------------*/
 :root {
   --family: 'Nunito Sans', sans-serif;
