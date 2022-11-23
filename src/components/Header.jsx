@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
-`   
+`
 
 const Title = styled.a`
     color: var(--color-text);

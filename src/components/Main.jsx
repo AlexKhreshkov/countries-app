@@ -10,12 +10,12 @@ const Wrapper = styled.main`
     }
 `;
 
-export default function Main({children}) {
+export default function Main({ children }) {
   return (
     <Wrapper>
-        <Container>
-            {children}
-        </Container>
+      <Container>
+        {children}
+      </Container>
     </Wrapper>
   )
 }
