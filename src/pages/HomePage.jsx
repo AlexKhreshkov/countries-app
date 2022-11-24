@@ -7,13 +7,18 @@ import Loader from "../components/Loader";
 import Main from "../components/Main";
 import { ALL_COUNTRIES } from "../config";
 
-
 export default function HomePage() {
 
     const [countries, setCountries] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [search, setSearch] = useState('')
     const [region, setRegion] = useState('')
+
+    useEffect(() => {
+        axios.get(ALL_COUNTRIES)
+            .then(response => setCountries(response.data))
+            .then(() => setIsLoading(false))
+    }, [])
 
     const searchedItems = useMemo(() => {
         return countries.filter(country => country.name.toLowerCase().includes(search.toLowerCase()))
@@ -28,12 +33,6 @@ export default function HomePage() {
         }
         return searchedItems
     }, [region, searchedItems])
-
-    useEffect(() => {
-        axios.get(ALL_COUNTRIES)
-            .then(response => setCountries(response.data))
-            .then(() => setIsLoading(false))
-    }, [])
 
 
     return (

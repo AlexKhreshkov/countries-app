@@ -30,13 +30,13 @@ const CardListItem = styled.li`
     margin-bottom: 5px;
 `
 
-export default function CountryCard({ img, name, info = [], onClick }) {
+export default function CountryCard({ img, name, info = [] }) {
     return (
         <Wrapper>
             <CardImage src={img} alt={name} />
             <CardBody>
                 <CardTitle>
-                    <Link to={`countries/${name}`}>{name}</Link>
+                    <Link to={`country/${name}`}>{name}</Link>
                 </CardTitle>
                 <CardList>
                     {info.map(el => (

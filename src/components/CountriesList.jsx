@@ -6,7 +6,6 @@ const Wrapper = styled.section`
     display: flex;
     flex-wrap: wrap;
     justify-content: center; 
-    
 `
 
 export default function CountriesList({ children }) {
