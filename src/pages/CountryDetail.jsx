@@ -47,7 +47,7 @@ export default function CountryDetail() {
         <Loader />
         :
         <Main>
-          <Button onClick={() => navigate(fromPage, { replace: false })}>
+          <Button onClick={() => navigate(-1)}>
             <IoArrowBack />back
           </Button>
           <CountryDetailContent countries={countries} {...country} />
