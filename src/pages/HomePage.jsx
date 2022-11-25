@@ -1,23 +1,32 @@
 import axios from "axios";
 import { useState, useEffect, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Controls from "../components/Controls";
 import CountriesList from "../components/CountriesList";
 import CountryCard from "../components/CountryCard";
 import Loader from "../components/Loader";
 import Main from "../components/Main";
 import { ALL_COUNTRIES } from "../config";
+import { addCountries } from "../store/counrtiesSlice";
 
 export default function HomePage() {
 
-    const [countries, setCountries] = useState([])
+
     const [isLoading, setIsLoading] = useState(true)
     const [search, setSearch] = useState('')
     const [region, setRegion] = useState('')
+    const dispatch = useDispatch()
+    const countries = useSelector(state => state.countries.countries)
 
     useEffect(() => {
-        axios.get(ALL_COUNTRIES)
-            .then(response => setCountries(response.data))
-            .then(() => setIsLoading(false))
+        if (countries.length === 0) {
+            axios.get(ALL_COUNTRIES)
+                .then(response => dispatch(addCountries(response.data)))
+                .then(() => setIsLoading(false))
+        }
+        else {
+            setIsLoading(false)
+        }
     }, [])
 
     const searchedItems = useMemo(() => {
